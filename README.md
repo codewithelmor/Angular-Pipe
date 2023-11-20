@@ -1,6 +1,6 @@
 # AngularPipe
 
-![2023-11-20-08-24-24](https://i.ibb.co/ynzFhpT/2023-11-20-08-24-24.gif)
+<a href="https://ibb.co/xSnqmYv"><img src="https://i.ibb.co/FbQ4sXv/2023-11-20-08-24-24.gif" alt="2023-11-20-08-24-24" border="0"></a>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.1.
 
