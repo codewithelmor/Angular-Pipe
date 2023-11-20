@@ -15,17 +15,34 @@ export class AppComponent implements OnInit {
 
   search: string = '';
 
+  filter: string = '';  
+
   constructor(
     private moviesService: MovieService
   ) {    
   }
 
   ngOnInit(): void {
-    this.movies = this.moviesService.list('Harry Potter');
   }
 
   onSearch(event: any) {
-    this.search = event.target.value;
+    this.search = event.target.value;    
+    this.moviesService.list(this.search)
+      .subscribe({
+        next: (data) => {
+          this.movies = data;
+        },
+        error: (error) => {
+          //console.error(error);
+        },
+        complete: () => {
+          //console.info('complete');
+        }
+      });
+  }
+
+  onFilter(event: any) {
+    this.filter = event.target.value;    
   }
 
 }
