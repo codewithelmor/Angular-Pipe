@@ -1,6 +1,6 @@
 # AngularPipe
 
-![2023-11-19 22-29-54](https://github.com/codewithelmor/Angular-Pipe/assets/44918452/9ef6a74b-6bee-46d8-9b5d-accb2842dfa0)
+![2023-11-20-08-24-24](https://i.ibb.co/ynzFhpT/2023-11-20-08-24-24.gif)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.1.
 
