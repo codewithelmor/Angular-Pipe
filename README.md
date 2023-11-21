@@ -75,6 +75,70 @@ This will apply each transformation in sequence.
 
 These are just basic examples, and there are many more built-in pipes and possibilities for creating custom pipes in Angular. Pipes provide a convenient way to format and manipulate data in your application's templates.
 
+# Observable
+
+In Angular, an Observable is a powerful and widely used tool for handling asynchronous operations and events. Observables are part of the RxJS (Reactive Extensions for JavaScript) library, which provides a set of powerful tools for reactive programming.
+
+Here's a brief overview of key concepts related to Angular Observables:
+
+1. **Observable**: An Observable represents a stream of data or events that can be observed over time. It can emit multiple values asynchronously.
+
+2. **Observer**: An Observer is an object that listens to the Observable and reacts to the data or events it emits. It consists of three methods: next(), error(), and complete().
+
+3. **Subscription**: A Subscription is an object that represents the execution of an Observable. It is used to unsubscribe from the Observable when it's no longer needed, preventing memory leaks.
+
+4. **Operators**: Operators are functions provided by RxJS that allow you to manipulate the data emitted by Observables. They are used to transform, filter, or combine Observables.
+
+Here's a simple example of using an Observable in an Angular component:
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+
+@Component({
+  selector: 'app-my-component',
+  template: `
+    <h1>{{ data$ | async }}</h1>
+  `,
+})
+export class MyComponent implements OnInit {
+  data$: Observable<string>;
+
+  ngOnInit() {
+    // Creating an Observable
+    this.data$ = new Observable((observer) => {
+      // Emitting data
+      observer.next('Hello, World!');
+
+      // Completing the Observable
+      observer.complete();
+    });
+  }
+}
+```
+
+In this example, the **async** pipe in the template subscribes to the **data$** Observable, automatically handling the subscription and unsubscription.
+
+You can also use operators to transform or manipulate data. For example:
+
+```typescript
+import { map } from 'rxjs/operators';
+
+// ...
+
+ngOnInit() {
+  this.data$ = new Observable((observer) => {
+    observer.next('Hello, World!');
+    observer.complete();
+  }).pipe(
+    // Using the map operator to transform the data
+    map((data: string) => data.toUpperCase())
+  );
+}
+```
+
+This is a basic introduction to Angular Observables. There's much more you can do with them, such as handling HTTP requests, dealing with multiple Observables, error handling, and more. The RxJS library provides a wide range of operators to help you compose complex asynchronous operations.
+
 # Screnshot
 
 <a href="https://ibb.co/xSnqmYv"><img src="https://i.ibb.co/FbQ4sXv/2023-11-20-08-24-24.gif" alt="2023-11-20-08-24-24" border="0"></a>
