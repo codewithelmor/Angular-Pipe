@@ -139,6 +139,59 @@ ngOnInit() {
 
 This is a basic introduction to Angular Observables. There's much more you can do with them, such as handling HTTP requests, dealing with multiple Observables, error handling, and more. The RxJS library provides a wide range of operators to help you compose complex asynchronous operations.
 
+## Create New Observable
+
+To create a new Observable in Angular, you typically use the Observable class from RxJS. Here's an example of how you can create a simple Observable that emits values over time:
+
+```typescript
+import { Observable } from 'rxjs';
+
+const myObservable = new Observable<number>((observer) => {
+  // Emit values asynchronously
+  observer.next(1);
+
+  setTimeout(() => {
+    observer.next(2);
+  }, 1000);
+
+  setTimeout(() => {
+    observer.next(3);
+    // Complete the observable
+    observer.complete();
+  }, 2000);
+
+  // This won't be emitted after complete
+  setTimeout(() => {
+    observer.next(4);
+  }, 3000);
+});
+
+// Subscribe to the Observable
+const subscription = myObservable.subscribe({
+  next: (value) => {
+    console.log('Received value:', value);
+  },
+  error: (error) => {
+    console.error('Error:', error);
+  },
+  complete: () => {
+    console.log('Observable complete');
+  },
+});
+
+// Unsubscribe after a certain time (for example, 2500 milliseconds)
+setTimeout(() => {
+  subscription.unsubscribe();
+}, 2500);
+
+```
+
+In this example, we create an Observable **myObservable** that emits values 1, 2, and 3 over a period of time. The **subscribe** method is used to listen to the Observable. The **next** callback is called when a new value is emitted, the error callback is called if there's an error, and the **complete** callback is called when the Observable completes.
+
+Note that once the Observable completes, any subsequent values won't be emitted. In this example, the value 4 is not emitted because the Observable completes after emitting 3.
+
+This is a basic example, and in a real Angular application, you might use Observables for various tasks, such as handling HTTP requests, event handling, or managing state in your application.
+
 # Screnshot
 
 <a href="https://ibb.co/xSnqmYv"><img src="https://i.ibb.co/FbQ4sXv/2023-11-20-08-24-24.gif" alt="2023-11-20-08-24-24" border="0"></a>
