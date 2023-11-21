@@ -271,6 +271,45 @@ You can also use **`mergeMap`** with promises, HTTP requests, or any other async
 
 Keep in mind that **`mergeMap`** subscribes to all inner Observables concurrently, which means the order of the emitted values may not be preserved. If you need to preserve the order, you might want to use other operators like **`concatMap`** or **`switchMap`** depending on your requirements.
 
+### **`forkJoin`**
+
+**`forkJoin`** is another operator in the RxJS library, and it's often used for combining the results of multiple Observables into a single Observable. It waits for all the input Observables to complete and then emits an array containing the last value from each input Observable at the corresponding index.
+
+Here's a basic example to illustrate the usage of **`forkJoin`**:
+
+```typescript
+import { forkJoin, of, timer } from 'rxjs';
+import { take } from 'rxjs/operators';
+
+const observable1 = of('Hello').pipe(take(1));
+const observable2 = of('World!').pipe(take(1));
+const observable3 = timer(2000).pipe(take(1), mapTo('2 seconds later'));
+
+const combined = forkJoin([observable1, observable2, observable3]);
+
+combined.subscribe(
+  ([result1, result2, result3]) => {
+    console.log(`${result1} ${result2} ${result3}`);
+  },
+  error => {
+    console.error('Error:', error);
+  }
+);
+
+```
+
+In this example:
+
+1. **`observable1`** emits the string 'Hello'.
+2. **`observable2`** emits the string 'World!'.
+3. **`observable3`** emits a value after a delay of 2 seconds.
+
+The **`forkJoin`** operator is used to combine these three Observables into a single Observable. When all three Observables complete, the combined Observable emits an array containing the last emitted value from each source Observable.
+
+The **`subscribe`** method is used to log the combined result to the console. Note that if any of the source Observables produces an error, the error callback in the **`subscribe`** method will be executed.
+
+Keep in mind that **`forkJoin`** requires all input Observables to complete. If any of the input Observables do not complete, the combined Observable will not emit, and the subscription will not complete. If you need a version of **`forkJoin`** that emits as soon as any of the input Observables complete, you can use the **`race`** operator.
+
 # Screnshot
 
 <a href="https://ibb.co/xSnqmYv"><img src="https://i.ibb.co/FbQ4sXv/2023-11-20-08-24-24.gif" alt="2023-11-20-08-24-24" border="0"></a>
