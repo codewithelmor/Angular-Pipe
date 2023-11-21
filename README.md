@@ -192,6 +192,51 @@ Note that once the Observable completes, any subsequent values won't be emitted.
 
 This is a basic example, and in a real Angular application, you might use Observables for various tasks, such as handling HTTP requests, event handling, or managing state in your application.
 
+# RxJS
+
+**`RxJS`**, or **`Reactive Extensions for JavaScript`**, is a library for reactive programming using Observables. Reactive programming is an asynchronous programming paradigm that deals with data streams and the propagation of changes. RxJS brings the concept of Observables to JavaScript, allowing developers to work with asynchronous data and events in a more structured and declarative way.
+
+Key concepts in RxJS include:
+
+1. **`Observable`**: An Observable represents a stream of values or events that can be observed over time. It is the core building block of RxJS. Observables can emit multiple values over time and can be subscribed to.
+
+2. **`Observer`**: An Observer is an object with callbacks that listens to the values emitted by an Observable. The callbacks include **`next`** (called when a new value is emitted), **`error`** (called when an error occurs), and **`complete`** (called when the Observable completes).
+
+3. **`Operators`**: Operators are functions that can be used to manipulate, transform, and combine Observables. RxJS provides a rich set of operators like **`map`**, **`filter`**, **`mergeMap`**, **`forkJoin`**, and many more.
+
+4. **`Subscription`**: When you subscribe to an Observable, you create a Subscription. A Subscription represents the execution of an Observable and provides methods to unsubscribe and release resources when the subscription is no longer needed.
+
+5. **`Subject`**: A Subject is a special type of Observable that allows both pushing and pulling of values. It is both an Observable and an Observer. Subjects are often used for multicasting, where multiple Observers can subscribe to the same Subject.
+
+Here's a simple example of using RxJS to create an Observable and subscribe to it:
+
+```js
+import { Observable } from 'rxjs';
+
+// Creating an Observable
+const observable = new Observable(subscriber => {
+  subscriber.next('Hello');
+  subscriber.next('World');
+  subscriber.complete();
+});
+
+// Subscribing to the Observable
+const subscription = observable.subscribe({
+  next: value => console.log(value),
+  complete: () => console.log('Observable completed'),
+});
+
+// Unsubscribing after 2 seconds
+setTimeout(() => {
+  subscription.unsubscribe();
+}, 2000);
+
+```
+
+In this example, the Observable emits two values ('Hello' and 'World') and then completes. The subscription logs the values to the console and completes after 2 seconds. The **`unsubscribe`** method is used to stop listening to the Observable and release resources.
+
+RxJS is widely used in modern web development, especially in the context of frameworks like Angular, where it is used for handling asynchronous operations, managing state, and handling events.
+
 # Screnshot
 
 <a href="https://ibb.co/xSnqmYv"><img src="https://i.ibb.co/FbQ4sXv/2023-11-20-08-24-24.gif" alt="2023-11-20-08-24-24" border="0"></a>
