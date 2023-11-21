@@ -1,28 +1,28 @@
 # Pipe
 
-In Angular, a pipe is a way to transform data in a template. Pipes are used to format data before displaying it in the view. Angular provides a set of built-in pipes for common tasks, and you can also create custom pipes.
+In Angular, a **`pipe`** is a way to transform data in a template. Pipes are used to format data before displaying it in the view. Angular provides a set of built-in pipes for common tasks, and you can also create custom pipes.
 
 Here's a brief overview of how to use pipes in Angular:
 
 ## Built-in Pipes:
 
-1. **UpperCasePipe/LowerCasePipe**:
+1. **`UpperCasePipe/LowerCasePipe`**:
 ```js
 {{ value | uppercase }}
 {{ value | lowercase }}
 ```
 
-2. **CurrencyPipe**:
+2. **`CurrencyPipe`**:
 ```js
 {{ price | currency:'USD':'symbol':'1.2-2' }}
 ```
 
-3. **DatePipe**:
+3. **`DatePipe`**:
 ```js
 {{ date | date:'short' }}
 ```
 
-4. **DecimalPipe/PercentPipe**:
+4. **`DecimalPipe/PercentPipe`**:
 ```js
 {{ number | number:'1.2-2' }}
 {{ percentage | percent:'1.2-2' }}
@@ -32,14 +32,14 @@ Here's a brief overview of how to use pipes in Angular:
 
 You can also create your own custom pipes for more specific transformations.
 
-1. **Generate a new pipe**:
+1. **`Generate a new pipe`**:
 ```bash
 ng generate pipe my-custom-pipe
 ```
 
-2. **Implement the transformation logic**:
+2. **`Implement the transformation logic`**:
 
-In the generated **my-custom-pipe.pipe.ts** file, you'll see a class with a **transform** method. Implement the logic for your transformation here.
+In the generated **`my-custom-pipe.pipe.ts`** file, you'll see a class with a **`transform`** method. Implement the logic for your transformation here.
 
 ```typescript
 import { Pipe, PipeTransform } from '@angular/core';
@@ -55,7 +55,7 @@ export class MyCustomPipe implements PipeTransform {
 }
 ```
 
-3. **Use the custom pipe in your template**:
+3. **`Use the custom pipe in your template`**:
 
 ```typescript
 {{ data | myCustomPipe }}
@@ -77,17 +77,17 @@ These are just basic examples, and there are many more built-in pipes and possib
 
 # Observable
 
-In Angular, an Observable is a powerful and widely used tool for handling asynchronous operations and events. Observables are part of the RxJS (Reactive Extensions for JavaScript) library, which provides a set of powerful tools for reactive programming.
+In Angular, an **`Observable`** is a powerful and widely used tool for handling asynchronous operations and events. Observables are part of the RxJS (Reactive Extensions for JavaScript) library, which provides a set of powerful tools for reactive programming.
 
 Here's a brief overview of key concepts related to Angular Observables:
 
-1. **Observable**: An Observable represents a stream of data or events that can be observed over time. It can emit multiple values asynchronously.
+1. **`Observable`**: An Observable represents a stream of data or events that can be observed over time. It can emit multiple values asynchronously.
 
-2. **Observer**: An Observer is an object that listens to the Observable and reacts to the data or events it emits. It consists of three methods: next(), error(), and complete().
+2. **`Observer`**: An Observer is an object that listens to the Observable and reacts to the data or events it emits. It consists of three methods: next(), error(), and complete().
 
-3. **Subscription**: A Subscription is an object that represents the execution of an Observable. It is used to unsubscribe from the Observable when it's no longer needed, preventing memory leaks.
+3. **`Subscription`**: A Subscription is an object that represents the execution of an Observable. It is used to unsubscribe from the Observable when it's no longer needed, preventing memory leaks.
 
-4. **Operators**: Operators are functions provided by RxJS that allow you to manipulate the data emitted by Observables. They are used to transform, filter, or combine Observables.
+4. **`Operators`**: Operators are functions provided by RxJS that allow you to manipulate the data emitted by Observables. They are used to transform, filter, or combine Observables.
 
 Here's a simple example of using an Observable in an Angular component:
 
@@ -117,7 +117,7 @@ export class MyComponent implements OnInit {
 }
 ```
 
-In this example, the **async** pipe in the template subscribes to the **data$** Observable, automatically handling the subscription and unsubscription.
+In this example, the **`async`** pipe in the template subscribes to the **`data$`** Observable, automatically handling the subscription and unsubscription.
 
 You can also use operators to transform or manipulate data. For example:
 
@@ -186,7 +186,7 @@ setTimeout(() => {
 
 ```
 
-In this example, we create an Observable **myObservable** that emits values 1, 2, and 3 over a period of time. The **subscribe** method is used to listen to the Observable. The **next** callback is called when a new value is emitted, the error callback is called if there's an error, and the **complete** callback is called when the Observable completes.
+In this example, we create an Observable **`myObservable`** that emits values 1, 2, and 3 over a period of time. The **`subscribe`** method is used to listen to the Observable. The **`next`** callback is called when a new value is emitted, the error callback is called if there's an error, and the **`complete`** callback is called when the Observable completes.
 
 Note that once the Observable completes, any subsequent values won't be emitted. In this example, the value 4 is not emitted because the Observable completes after emitting 3.
 
