@@ -361,7 +361,7 @@ The **`subscribe`** method is used to log the combined result to the console. No
 
 Keep in mind that **`forkJoin`** requires all input Observables to complete. If any of the input Observables do not complete, the combined Observable will not emit, and the subscription will not complete. If you need a version of **`forkJoin`** that emits as soon as any of the input Observables complete, you can use the **`race`** operator.
 
-# Screnshot
+# Screenshot
 
 <a href="https://ibb.co/xSnqmYv"><img src="https://i.ibb.co/FbQ4sXv/2023-11-20-08-24-24.gif" alt="2023-11-20-08-24-24" border="0"></a>
 
