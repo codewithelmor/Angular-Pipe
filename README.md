@@ -75,6 +75,57 @@ This will apply each transformation in sequence.
 
 These are just basic examples, and there are many more built-in pipes and possibilities for creating custom pipes in Angular. Pipes provide a convenient way to format and manipulate data in your application's templates.
 
+## Use a pipe inside a TypeScript file
+
+In Angular, pipes are typically used in HTML templates to transform and format data for display. However, if you want to use a pipe inside a TypeScript file, you can do so by injecting the **`DecimalPipe`**, **`DatePipe`**, or other relevant pipes directly into your component or service.
+
+Here's an example of how you can use the **`DecimalPipe`** inside a TypeScript file:
+
+```typescript
+import { Component } from '@angular/core';
+import { DecimalPipe } from '@angular/common';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <div>
+      {{ formattedNumber }}
+    </div>
+  `
+})
+export class AppComponent {
+  // Inject DecimalPipe in the constructor
+  constructor(private decimalPipe: DecimalPipe) {}
+
+  // Use the pipe in your TypeScript file
+  someNumber: number = 123456.789;
+  formattedNumber: string = this.decimalPipe.transform(this.someNumber);
+}
+
+```
+
+In this example, the **`DecimalPipe`** is injected into the **`AppComponent`** constructor. Then, it's used to transform the **`someNumber`** property in the TypeScript file, and the result is bound to the **`formattedNumber`** property, which is then displayed in the template.
+
+Remember to add the **`DecimalPipe`** to the providers array in your module or component if it's not already provided at a higher level:
+
+```typescript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { DecimalPipe } from '@angular/common';
+import { AppComponent } from './app.component';
+
+@NgModule({
+  imports: [BrowserModule],
+  declarations: [AppComponent],
+  providers: [DecimalPipe], // Add DecimalPipe to the providers array
+  bootstrap: [AppComponent]
+})
+export class AppModule {}
+
+```
+
+Make sure to import the necessary modules and pipes based on your requirements. If you need other pipes, you can follow a similar approach by injecting them into your component or service.
+
 # Observable
 
 In Angular, an **`Observable`** is a powerful and widely used tool for handling asynchronous operations and events. Observables are part of the RxJS (Reactive Extensions for JavaScript) library, which provides a set of powerful tools for reactive programming.
