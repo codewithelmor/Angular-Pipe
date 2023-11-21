@@ -237,6 +237,40 @@ In this example, the Observable emits two values ('Hello' and 'World') and then 
 
 RxJS is widely used in modern web development, especially in the context of frameworks like Angular, where it is used for handling asynchronous operations, managing state, and handling events.
 
+## Operators
+
+### **`mergeMap`**
+
+**`mergeMap`** is an operator in the RxJS library, which is a reactive programming library for JavaScript. The purpose of **`mergeMap`** is to transform the items emitted by an Observable into Observables, and then flatten those into a single Observable. It's often used when you have a higher-order Observable (an Observable that emits other Observables) and you want to flatten it into a single Observable.
+
+Here's a basic example to illustrate the concept:
+
+```typescript
+import { of } from 'rxjs';
+import { mergeMap } from 'rxjs/operators';
+
+const source = of('a', 'b', 'c');
+
+const example = source.pipe(
+  mergeMap(value => of(`${value}1`, `${value}2`))
+);
+
+example.subscribe(console.log);
+```
+
+In this example, the **`source`** Observable emits three values ('a', 'b', 'c'). The **`mergeMap`** operator is then used to transform each of these values into an Observable that emits two values ('a1', 'a2', 'b1', 'b2', 'c1', 'c2'). The final result is a flattened Observable that emits all these values.
+
+Here's a breakdown of the code:
+
+1. **`source`** emits 'a', 'b', 'c'.
+2. **`mergeMap`** transforms each of these values into an Observable using the **`of`** function.
+3. The resulting Observables are flattened into a single stream.
+4. The **`subscribe`** method is used to log the emitted values to the console.
+
+You can also use **`mergeMap`** with promises, HTTP requests, or any other asynchronous operation to handle the concurrency of multiple observables.
+
+Keep in mind that **`mergeMap`** subscribes to all inner Observables concurrently, which means the order of the emitted values may not be preserved. If you need to preserve the order, you might want to use other operators like **`concatMap`** or **`switchMap`** depending on your requirements.
+
 # Screnshot
 
 <a href="https://ibb.co/xSnqmYv"><img src="https://i.ibb.co/FbQ4sXv/2023-11-20-08-24-24.gif" alt="2023-11-20-08-24-24" border="0"></a>
