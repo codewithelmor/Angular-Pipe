@@ -1,5 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { filter } from 'lodash';
+import { Observable, map } from 'rxjs';
 import { MovieSearchModel } from '../models/movie-search.model';
 
 @Pipe({
@@ -7,25 +8,17 @@ import { MovieSearchModel } from '../models/movie-search.model';
 })
 export class MovieFilterPipe implements PipeTransform {
 
-  transform(values: MovieSearchModel[], parameter: string): MovieSearchModel[] {
-    let filteredValues: MovieSearchModel[] = [];
-
-    let filteredTitle = filter(values, m => m['Title'].toLowerCase().includes(parameter.toLowerCase()));
-    if (filteredTitle.length > 0) {
-      filteredValues.push(...filteredTitle);
+  transform(values: Observable<MovieSearchModel[]>, parameter: string): Observable<MovieSearchModel[]> {
+    if (parameter !== undefined && parameter !== null && parameter !== '') {
+      return values.pipe(
+        map(movies => filter(movies, m => 
+          m['Year'].toLowerCase().includes(parameter.toLowerCase()) ||
+          m['Title'].toLowerCase().includes(parameter.toLowerCase()) || 
+          m['Type'].toLowerCase().includes(parameter.toLowerCase())
+          ))
+      );
     }
-
-    let filteredYear = filter(values, m => m['Year'].toLowerCase().includes(parameter.toLowerCase()));
-    if (filteredYear.length > 0) {
-      filteredValues.push(...filteredYear);
-    }
-
-    let filteredType = filter(values, m => m['Type'].toLowerCase().includes(parameter.toLowerCase()));
-    if (filteredType.length > 0) {
-      filteredValues.push(...filteredType);
-    }
-
-    return filteredValues;
+    return values;
   }
 
 }
