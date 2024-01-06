@@ -1,0 +1,103 @@
+#centerCircle {
+    animation: pulsation 1.5s linear infinite alternate forwards;
+}
+
+#smallCircles {            
+    animation: pulsationSmall 1.5s linear infinite alternate forwards;
+}
+
+@keyframes pulsation {
+    0% {
+        transform: scale(1);
+        animation-delay: 5s;
+        transform-origin: center;
+    }
+
+    60% {
+        transform: scale(1.2);
+        animation-delay: 5s;
+        transform-origin: center;
+    }
+
+    80% {
+        transform: scale(0.8);
+        animation-delay: 5s;
+        transform-origin: center;
+    }
+
+    100% {
+        transform: scale(1);
+        animation-delay: 5s;
+        transform-origin: center;
+    }
+}
+
+@keyframes pulsationSmall {
+    0% {
+        transform: scale(1);
+        animation-delay: 5s;
+        transform-origin: center;
+    }
+
+    60% {
+        transform: scale(0.5);
+        animation-delay: 5s;
+        transform-origin: center;
+    }
+
+    80% {
+        transform: scale(0);
+        animation-delay: 5s;
+        transform-origin: center;
+    }
+
+    100% {
+        transform: scale(1);
+        animation-delay: 5s;
+        transform-origin: center;
+    }
+}
+
+#redSmallCircle {
+    animation: rotation 1.5s linear infinite;
+}
+
+#orangeSmallCircle {
+    animation: rotation 1.5s linear infinite;
+}
+
+#yellowSmallCircle {
+    animation: rotation 1.5s linear infinite;
+}
+
+#greenSmallCircle {
+    animation: rotation 1.5s linear infinite;
+}
+
+#cyanSmallCircle {
+    animation: rotation 1.5s linear infinite;
+}
+
+#blueSmallCircle {
+    animation: rotation 1.5s linear infinite;
+}
+
+#indigoSmallCircle {
+    animation: rotation 1.5s linear infinite;
+}
+
+#violetSmallCircle {
+    animation: rotation 1.5s linear infinite;
+}
+
+@keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+        transform-origin: center;
+    }
+
+    100% {
+        transform: rotate(360deg);
+        transform-origin: center;
+    }
+}

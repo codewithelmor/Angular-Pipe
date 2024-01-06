@@ -8,13 +8,15 @@ import { AppComponent } from './app.component';
 import { MovieFilterPipe } from './shared/pipes/movie-filter.pipe';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { MoviesComponent } from './movies/movies.component';
+import { SpinnerComponent } from './shared/components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MovieFilterPipe,
     LoadingComponent,
-    MoviesComponent
+    MoviesComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
